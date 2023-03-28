@@ -9,7 +9,7 @@ While handling Angular assets in JS and HTML files described in the official
 the task of processing CSS files referring assets with url(&lt;asset path&gt;)
 directive is not yet clarified. Or I simply couldn't find the solution.
 
-1. angular.json
+## angular.json
 
 Add **resourcesOutputPath** to the
 `projects[<project name>].architect.build.options`. For example:
@@ -23,7 +23,7 @@ Add **resourcesOutputPath** to the
 It allows all the assets which are not located in the `assets` paths to be
 moved into `/assets/misc` directory.
 
-2. extra-webpack.config.js
+## extra-webpack.config.js
 
 You need to add compilation hook provided in "extra-webpack.config.js" file in
 this repo.
