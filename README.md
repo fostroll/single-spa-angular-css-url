@@ -5,9 +5,11 @@ with `url(<asset path>)` directive in single-spa Angular applications) is not ye
 in the documentation. Or I simply couldn't find the solution.
 
 While handling Angular assets in JS and HTML files described in the official
-*[documentation]([URL]https://single-spa.js.org/docs/ecosystem-angular.html#angular-assets)*,
+*[documentation](https://single-spa.js.org/docs/ecosystem-angular.html#angular-assets)*,
 the task of processing CSS files referring assets with `url(<asset path>)`
 directive is not yet clarified. Or I simply couldn't find the solution.
+
+By default, assets referrals in CSS files that contain relative links after exposing
 
 ## angular.json
 
