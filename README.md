@@ -1,31 +1,29 @@
 # single-spa-angular-css-url
 
-This is just reminder for internal use, because the task (processing CSS files
-with `url(<asset path>)` directive in single-spa Angular applications) is not
-yet clarified in the documentation. Or I simply couldn't find the solution.
-
-While handling Angular assets in JS and HTML files described in the official
+Although the handle of Angular assets in JS and HTML files is described in the
+official
 *[documentation](https://single-spa.js.org/docs/ecosystem-angular.html#angular-assets)*,
-the task of processing CSS files referring assets with `url(<asset path>)`
+the task of processing CSS files that refer to assets using `url(<asset path>)`
 directive is not yet clarified. Or I simply couldn't find the solution.
 
-By default, assets referrals in CSS files that contains relative paths continue
-show those relative paths while using in the host application. Obviosly, it
-ends up with error, because host application doesn't contain the assets needed.
+By default, assets references in CSS files that contain relative paths continue
+to display those relative paths when used in the host application. Obviosly,
+this ends up in an error the because host application doesn't contain the
+required assets.
 
-**The goal**: links from CSS files after compilation should contain absolute
-path of the assets including FQDN of the microfrontend which expose the
-corresponding assets. It must work in both: production mode and development
+**The goal**: links from CSS files after compilation must contain absolute
+path to assets, including FQDN of the microfrontend that exposes the
+corresponding assets. It should work in both production mode and development
 mode with live reload.
 
 ## Solution
 
-Until now, I found the only way to solve the task by writing a small webpack
-compilation hook. Primary, we move all our assets to the particular directory,
-and then adding FQDN of the microfrontend to the path of that directory in the
-final bundle.
+So far, the only way I've found to solve the problem is by writing a small
+webpack compilation hook. Fist of all, we move all of our CSS assets to a
+specific directory, and then we add FQDN of the microfrontend to that
+directory's path in the final bundle.
 
-## angular.json
+### angular.json
 
 Add **resourcesOutputPath** to the
 `projects[<project name>].architect.build.options`. For example:
@@ -36,10 +34,10 @@ Add **resourcesOutputPath** to the
   "src/assets"
 ],
 ```
-It allows all the assets which are not located in the `assets` paths to be
-moved into `/assets/misc` directory.
+It allows all assets that are not in the `assets` paths to be moved to the
+`/assets/misc` directory.
 
-## extra-webpack.config.js
+### extra-webpack.config.js
 
-You need to add compilation hook provided in `extra-webpack.config.js` file in
-this repo.
+You need to add compilation hook provided in `extra-webpack.config.js` file
+in this repo.
