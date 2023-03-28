@@ -1,12 +1,12 @@
 # single-spa-angular-css-url
 
 This is just reminder for internal use, because the task (processing CSS files
-with url(&lt;asset path&gt;) directive in single-spa Angular applications) is not yet clarified
+with `url(&lt;asset path&gt;)` directive in single-spa Angular applications) is not yet clarified
 in the documentation. Or I simply couldn't find the solution.
 
 While handling Angular assets in JS and HTML files described in the official
 *[documentation]([URL]https://single-spa.js.org/docs/ecosystem-angular.html#angular-assets)*,
-the task of processing CSS files referring assets with url(&lt;asset path&gt;)
+the task of processing CSS files referring assets with `url(&lt;asset path&gt;)`
 directive is not yet clarified. Or I simply couldn't find the solution.
 
 ## angular.json
