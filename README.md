@@ -25,5 +25,5 @@ moved into `/assets/misc` directory.
 
 ## extra-webpack.config.js
 
-You need to add compilation hook provided in "extra-webpack.config.js" file in
+You need to add compilation hook provided in `extra-webpack.config.js` file in
 this repo.
