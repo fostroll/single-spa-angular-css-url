@@ -28,7 +28,7 @@ directory's path in the final bundle.
 For single-spa scripts we need to add environment variable `ANGULAR_PROJECT`
 containing out project name as it specified in `angular.json`. For example:
 
-```json
+```
 scripts: {
   ...
   "build:single-spa:my-project": "set ANGULAR_PROJECT=my-project-web-single-spa&& ng build --project my-project-single-spa --configuration production",
