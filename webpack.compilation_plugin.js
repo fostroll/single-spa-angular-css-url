@@ -44,9 +44,17 @@ module.exports.default = (compilation) => {
             angularConfig, angularProject, configKey
           );
           configKey = 'deployUrl';
-          const deployUrl = getConfigValue(
-            angularConfig, angularProject, configKey
-          );
+          let deployUrl;
+          try {
+            deployUrl = getConfigValue(
+              angularConfig, angularProject, configKey
+            );
+          } catch (err) {
+            configKey = 'baseHref';
+            deployUrl = getConfigValue(
+              angularConfig, angularProject, configKey
+            );
+          }
           compilation.hooks.processAssets.tap({
             name: 'Replace',
             stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE,
