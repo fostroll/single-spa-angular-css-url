@@ -23,6 +23,20 @@ webpack compilation hook. Fist of all, we move all of our CSS assets to a
 specific directory, and then we add FQDN of the microfrontend to that
 directory's path in the final bundle.
 
+### package.json
+
+For single-spa scripts we need to add environment variable `ANGULAR_PROJECT`
+containing out project name as it specified in `angular.json`. For example:
+
+```json
+scripts: {
+  ...
+  "build:single-spa:my-project": "set ANGULAR_PROJECT=my-project-web-single-spa&& ng build --project my-project-single-spa --configuration production",
+  "serve:single-spa:my-project": "set ANGULAR_PROJECT=my-project-single-spa&& ng serve --project my-project-web-single-spa --disable-host-check --port 9001 --live-reload true",
+  ...
+},
+```
+
 ### angular.json
 
 Add **resourcesOutputPath** to the
@@ -40,4 +54,4 @@ It allows all assets that are not in the `assets` paths to be moved to the
 ### extra-webpack.config.js
 
 You need to add compilation hook provided in `extra-webpack.config.js` file
-in this repo.
+in this repo (requires `webpack.compilation_plugin.js` which is also provided).
