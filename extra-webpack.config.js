@@ -1,14 +1,14 @@
 const { merge } = require("webpack-merge");
 const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').default;
+webpackCompilationPlugin = require('./webpack.compilation_plugin.js').default;
 //const fs = require('fs');
 //const path = require('path');
-webpackCompilationPlugin = require('./webpack.compilation_plugin.js').default;
 
 module.exports = (config, options) => {
-  const config_ = singleSpaAngularWebpack(config, options);
+  const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
 
   /*
-  config_.module.rules.push({
+  singleSpaWebpackConfig.module.rules.push({
     test: /\.?(css|scss|sass|less|styl)$/i,
 //    use: [{
 //      loader: './style_loader.js',
@@ -19,19 +19,19 @@ module.exports = (config, options) => {
     loader: './style_loader.js',
   });
   */
-  //console.log(config_.module.rules);
+  //console.log(singleSpaWebpackConfig.module.rules);
 
-//  return config_;
-  return merge(config_, {
+//  return singleSpaWebpackConfig;
+  return merge(singleSpaWebpackConfig, {
     //module: {
-    //  rules: [ ...config_.module.rules ]
+    //  rules: [ ...singleSpaWebpackConfig.module.rules ]
     //},
     plugins: [
       {
         apply: (compiler) => {
           compiler.hooks.thisCompilation.tap(
             'compilationPlugin',
-            (compilation) => webpackCompilationPlugin(compilation)
+            (compilation) => webpackCompilationPlugin(compilation, options)
           );
 
           /*

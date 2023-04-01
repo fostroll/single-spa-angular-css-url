@@ -3,6 +3,8 @@
 Although the handle of Angular assets in JS and HTML files is described in the
 official
 *[documentation](https://single-spa.js.org/docs/ecosystem-angular.html#angular-assets)*,
+(***note*** that you must use deprecated key `deployUrl` in
+`architect.build.options` to use it)
 the task of processing CSS files that refer to assets using `url(<asset path>)`
 directive is not yet clarified. Or I simply couldn't find the solution.
 
