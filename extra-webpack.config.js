@@ -5,10 +5,10 @@ webpackCompilationPlugin = require('./webpack.compilation_plugin.js').default;
 //const path = require('path');
 
 module.exports = (config, options) => {
-  const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
+  const config_ = singleSpaAngularWebpack(config, options);
 
   /*
-  singleSpaWebpackConfig.module.rules.push({
+  config_.module.rules.push({
     test: /\.?(css|scss|sass|less|styl)$/i,
 //    use: [{
 //      loader: './style_loader.js',
@@ -19,12 +19,11 @@ module.exports = (config, options) => {
     loader: './style_loader.js',
   });
   */
-  //console.log(singleSpaWebpackConfig.module.rules);
 
-//  return singleSpaWebpackConfig;
-  return merge(singleSpaWebpackConfig, {
+//  return config_;
+  return merge(config_, {
     //module: {
-    //  rules: [ ...singleSpaWebpackConfig.module.rules ]
+    //  rules: [ ...config_.module.rules ]
     //},
     plugins: [
       {
