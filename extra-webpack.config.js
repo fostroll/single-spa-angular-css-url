@@ -1,6 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').default;
-webpackCompilationPlugin = require('./webpack.compilation_plugin.js').default;
+const webpackCompilationPlugin = require('./webpack.compilation_plugin.js').default;
 //const fs = require('fs');
 //const path = require('path');
 
