@@ -11,17 +11,30 @@ const getAsset = (compilation, name) => {
   }
 };
 
-module.exports.default = (compilation, options) => {
+const getConfigValue = (config, key) => {
+  const value = config[key];
+  if (value === undefined) {
+    throw new Error(`Key is not found (reading '${key}')`);
+  }
+  return value;
+};
+
+module.exports.default = (compilation, config, options) => {
   configKey = 'resourcesOutputPath';
   try {
-    const resourcesOutputPath = options[configKey]
-    configKey = 'deployUrl';
+    const resourcesOutputPath = getConfigValue(options, configKey);
     let publicPath;
+    configKey = 'publicPath';
     try {
-      publicPath = options[configKey];
+      publicPath = getConfigValue(config, configKey);
     } catch (err) {
       configKey = 'baseHref';
-      publicPath = options[configKey];
+      try {
+        publicPath = getConfigValue(options, configKey);
+      } catch (err) {
+        configKey = 'deployUrl';
+        publicPath = getConfigValue(options, configKey);
+      }
     }
 
     compilation.hooks.processAssets.tap({
@@ -62,10 +75,7 @@ module.exports.default = (compilation, options) => {
     });
     
   } catch (err) {
-    console.warn('\nCannot find "angular_config.projects'
-              + `['${angularProject}'].architect.build`
-              + `.options.${configKey}" key in `
-              + `"${angularJsonFn}" file:`);
+    console.warn(`\nCannot find "${configKey}" key in options`);
     console.warn(err.message);
   }
 }

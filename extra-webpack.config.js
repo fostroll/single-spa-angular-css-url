@@ -30,7 +30,8 @@ module.exports = (config, options) => {
         apply: (compiler) => {
           compiler.hooks.thisCompilation.tap(
             'compilationPlugin',
-            (compilation) => webpackCompilationPlugin(compilation, options)
+            (compilation) => webpackCompilationPlugin(compilation,
+                                                      config, options)
           );
 
           /*
